@@ -9,6 +9,9 @@
 import UIKit
 
 class LobbyViewController: UIViewController {
+    
+    let buttonStackView = UIStackView()
+    let buttonsArray = Array(repeating: UIButton(), count: 4)
 
     override func viewDidLoad() {
         super.viewDidLoad()
