@@ -18,6 +18,7 @@ class LobbyViewController: UIViewController {
         super.viewDidLoad()
         configureViewController()
         configureStackView()
+        configureButtons()
     }
     
     private func configureViewController() {
@@ -34,5 +35,16 @@ class LobbyViewController: UIViewController {
         for button in buttons {
             stackView.addArrangedSubview(button)
         }
+    }
+    
+    private func configureButtons() {
+        for index in 0...3 {
+            buttons[index].titleLabel?.text = sizeStrings[index]
+            buttons[index].addTarget(self, action: #selector(startGame), for: .touchUpInside)
+        }
+    }
+    
+    @objc private func startGame() {
+        
     }
 }
