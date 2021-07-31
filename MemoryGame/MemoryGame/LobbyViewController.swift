@@ -59,10 +59,6 @@ class LobbyViewController: UIViewController {
         }
     }
     
-    @objc private func startGame(sender: UIButton) {
-        
-    }
-    
     private func configureUI() {
         view.addSubview(titleLabel)
         view.addSubview(stackView)
@@ -70,7 +66,7 @@ class LobbyViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 75),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 200),
@@ -84,5 +80,27 @@ class LobbyViewController: UIViewController {
                 button.widthAnchor.constraint(equalTo: stackView.widthAnchor)
             ])
         }
+    }
+    
+    @objc private func startGame(sender: UIButton) {
+        let gamePlayViewController = GamePlayViewController()
+        if sender.tag == 0 {
+            // Grid Size is 2x5
+            gamePlayViewController.gridWidth = 2
+            gamePlayViewController.gridHeight = 5
+        } else if sender.tag == 1 {
+            // Grid Size is 3x4
+            gamePlayViewController.gridWidth = 3
+            gamePlayViewController.gridHeight = 4
+        } else if sender.tag == 2 {
+            // Grid Size is 4x4
+            gamePlayViewController.gridWidth = 4
+            gamePlayViewController.gridHeight = 4
+        } else {
+            // Grid Size is 4x5
+            gamePlayViewController.gridWidth = 4
+            gamePlayViewController.gridHeight = 5
+        }
+        navigationController?.pushViewController(gamePlayViewController, animated: true)
     }
 }
