@@ -15,5 +15,10 @@ class GamePlayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureViewController()
+    }
+    
+    private func configureViewController() {
+        view.backgroundColor = .systemBackground
     }
 }
