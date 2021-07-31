@@ -10,8 +10,9 @@ import UIKit
 
 class LobbyViewController: UIViewController {
     
-    let buttonStackView = UIStackView()
-    let buttonsArray = Array(repeating: UIButton(), count: 4)
+    let stackView = UIStackView()
+    let buttons = Array(repeating: UIButton(), count: 4)
+    let sizeStrings = ["2 x 5", "3 x 4", "4 x 4", "4 x 5"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,12 +27,12 @@ class LobbyViewController: UIViewController {
     }
     
     private func configureStackView() {
-        buttonStackView.axis = .vertical
-        buttonStackView.alignment = .center
-        buttonStackView.distribution = .equalSpacing
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.distribution = .equalSpacing
         
-        for button in buttonsArray {
-            buttonStackView.addArrangedSubview(button)
+        for button in buttons {
+            stackView.addArrangedSubview(button)
         }
     }
 }
