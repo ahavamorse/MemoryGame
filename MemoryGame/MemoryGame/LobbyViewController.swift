@@ -14,6 +14,8 @@ class LobbyViewController: UIViewController {
     let stackView = UIStackView()
     let buttons = [UIButton(frame: .zero), UIButton(frame: .zero), UIButton(frame: .zero), UIButton(frame: .zero)]
     let sizeStrings = ["2 Cards x 5 Cards", "3 Cards x 4 Cards", "4 Cards x 4 Cards", "4 Cards x 5 Cards"]
+    
+    let gamePlayViewController = GamePlayViewController()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -40,7 +42,10 @@ class LobbyViewController: UIViewController {
     }
     
     private func configureBackButton() {
-        navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "backNavButton"), style: .plain, target: self, action: nil)
+//        navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "backNavButton"), style: .plain, target: self, action: nil)
+        let backButtonImage = UIImage(named: "backNavButton")
+        navigationController?.navigationBar.backIndicatorImage = backButtonImage
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = backButtonImage
     }
     
     private func configureTitleLabel() {
@@ -97,24 +102,25 @@ class LobbyViewController: UIViewController {
     }
     
     @objc private func startGame(sender: UIButton) {
-        let gamePlayViewController = GamePlayViewController()
-        if sender.tag == 0 {
+        switch sender.tag {
+        case 0:
             // Grid Size is 2x5
             gamePlayViewController.gridWidth = 2
             gamePlayViewController.gridHeight = 5
-        } else if sender.tag == 1 {
+        case 1:
             // Grid Size is 3x4
             gamePlayViewController.gridWidth = 3
             gamePlayViewController.gridHeight = 4
-        } else if sender.tag == 2 {
+        case 2:
             // Grid Size is 4x4
             gamePlayViewController.gridWidth = 4
             gamePlayViewController.gridHeight = 4
-        } else {
+        default:
             // Grid Size is 4x5
             gamePlayViewController.gridWidth = 4
             gamePlayViewController.gridHeight = 5
         }
+        gamePlayViewController.gridSizeString = sizeStrings[sender.tag]
         navigationController?.pushViewController(gamePlayViewController, animated: true)
     }
 }
