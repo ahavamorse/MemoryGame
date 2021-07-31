@@ -28,6 +28,7 @@ class CardCollectionViewCell: UICollectionViewCell {
     private func configure() {
         for imageView in [cardFrontImageView, cardBackImageView] {
             addSubview(imageView)
+            imageView.translatesAutoresizingMaskIntoConstraints = false
             
             NSLayoutConstraint.activate([
                 imageView.topAnchor.constraint(equalTo: topAnchor),
