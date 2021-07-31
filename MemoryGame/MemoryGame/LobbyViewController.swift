@@ -16,11 +16,22 @@ class LobbyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
+        configureStackView()
     }
     
     private func configureViewController() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Memory Game"
+    }
+    
+    private func configureStackView() {
+        buttonStackView.axis = .vertical
+        buttonStackView.alignment = .center
+        buttonStackView.distribution = .equalSpacing
+        
+        for button in buttonsArray {
+            buttonStackView.addArrangedSubview(button)
+        }
     }
 }
