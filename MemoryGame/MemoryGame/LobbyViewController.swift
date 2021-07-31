@@ -39,12 +39,14 @@ class LobbyViewController: UIViewController {
     
     private func configureButtons() {
         for index in 0...3 {
-            buttons[index].titleLabel?.text = sizeStrings[index]
-            buttons[index].addTarget(self, action: #selector(startGame), for: .touchUpInside)
+            let button = buttons[index]
+            button.tag = index
+            button.titleLabel?.text = sizeStrings[index]
+            button.addTarget(self, action: #selector(startGame), for: .touchUpInside)
         }
     }
     
-    @objc private func startGame() {
+    @objc private func startGame(sender: UIButton) {
         
     }
 }
