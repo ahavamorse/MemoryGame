@@ -14,6 +14,27 @@ class CardCollectionViewCell: UICollectionViewCell {
     let cardFrontImageView = UIImageView(frame: .zero)
     let cardBackImageView = UIImageView(frame: .zero)
     
-    let image: UIImage
     let isFlipped: Bool = false
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configure()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configure() {
+        for imageView in [cardFrontImageView, cardBackImageView] {
+            addSubview(imageView)
+            
+            NSLayoutConstraint.activate([
+                imageView.topAnchor.constraint(equalTo: topAnchor),
+                imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+                imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+                imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            ])
+        }
+    }
 }
