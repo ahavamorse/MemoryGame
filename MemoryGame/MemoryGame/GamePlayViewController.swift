@@ -15,6 +15,7 @@ class GamePlayViewController: UIViewController {
     var gridSizeString: String = ""
     
     var cardImages: [UIImage] = []
+    var flippedCell: CardCollectionViewCell?
     var numOfCardPairs: Int {
         let totalNumOfCards = gridWidth * gridHeight
         return totalNumOfCards / 2
@@ -41,6 +42,7 @@ class GamePlayViewController: UIViewController {
     
     private func configureNavigationBar() {
         navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.prefersLargeTitles = true
         title = gridSizeString
     }
     
@@ -101,5 +103,34 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CardCollectionViewCell.reuseID, for: indexPath) as! CardCollectionViewCell
         cell.set(frontImage: cardImages[indexPath.row])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedCell = collectionView.cellForItem(at: indexPath) as! CardCollectionViewCell
+        if selectedCell != flippedCell {
+            // Card is not yet flipped
+            selectedCell.flipToFront() { [weak self] in
+                guard let self = self else { return }
+                
+                if let firstCell = self.flippedCell {
+                    // A card has already been flipped
+                    let firstImage = firstCell.cardFrontImageView.image
+                    let secondImage = selectedCell.cardFrontImageView.image
+                    
+                    if firstImage != secondImage {
+                        // Cards don't match
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            firstCell.flipToBack()
+                            selectedCell.flipToBack()
+                        }
+                    }
+                    // All unmatched cards have been flipped back
+                    self.flippedCell = nil
+                } else {
+                    // This is the first flipped card
+                    self.flippedCell = selectedCell
+                }
+            }
+        }
     }
 }

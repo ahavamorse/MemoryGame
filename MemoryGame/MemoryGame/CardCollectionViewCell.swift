@@ -14,8 +14,6 @@ class CardCollectionViewCell: UICollectionViewCell {
     let cardFrontImageView = UIImageView(frame: .zero)
     let cardBackImageView = UIImageView(frame: .zero)
     
-    var isFlipped: Bool = false
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure(cardBackImageView)
@@ -42,17 +40,16 @@ class CardCollectionViewCell: UICollectionViewCell {
         cardFrontImageView.image = frontImage
     }
     
-    func flipToFront() {
-        if isFlipped == false {
-            configure(cardFrontImageView)
-            UIView.transition(from: cardBackImageView, to: cardFrontImageView, duration: 0.25, options: [.transitionFlipFromBottom])
-            isFlipped = true
+    func flipToFront(completion: @escaping () -> Void) {
+        configure(cardFrontImageView)
+        UIView.transition(from: cardBackImageView, to: cardFrontImageView, duration: 0.25, options: [.transitionFlipFromBottom]) { _ in
+            completion()
         }
+        
     }
     
     func flipToBack() {
         configure(cardBackImageView)
         UIView.transition(from: cardFrontImageView, to: cardBackImageView, duration: 0.25, options: [.transitionFlipFromBottom])
-        isFlipped = false
     }
 }
