@@ -9,6 +9,8 @@
 import UIKit
 
 enum CardImages {
+    static let cardBack = UIImage(named: "allCardBacks")
+    
     static let bat = UIImage(named: "memoryBatCardFront")!
     static let cat = UIImage(named: "memoryCatCardFront")!
     static let cow = UIImage(named: "memoryCowCardFront")!
