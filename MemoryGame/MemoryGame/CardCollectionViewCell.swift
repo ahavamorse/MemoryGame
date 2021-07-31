@@ -37,4 +37,9 @@ class CardCollectionViewCell: UICollectionViewCell {
             ])
         }
     }
+    
+    func set(frontImage: UIImage) {
+        cardBackImageView.image = CardImages.cardBack
+        cardFrontImageView.image = frontImage
+    }
 }
