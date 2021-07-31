@@ -14,6 +14,12 @@ class GamePlayViewController: UIViewController {
     var gridHeight: Int = 0
     var gridSizeString: String = ""
     
+    var cards: [Card] = []
+    var numOfCardPairs: Int {
+        let totalNumOfCards = gridWidth * gridHeight
+        return totalNumOfCards / 2
+    }
+    
     var collectionView: UICollectionView!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -25,6 +31,8 @@ class GamePlayViewController: UIViewController {
         super.viewDidLoad()
         configureViewController()
         configureNavigationBar()
+        
+        createCards()
         configureCollectionView()
     }
     
@@ -35,6 +43,28 @@ class GamePlayViewController: UIViewController {
     private func configureNavigationBar() {
         navigationController?.navigationBar.isHidden = false
         title = gridSizeString
+    }
+    
+    private func createCards() {
+        let cardImages: [UIImage] = getCardImages()
+        for image in cardImages {
+            cards.append(Card(image: image))
+            cards.append(Card(image: image))
+        }
+        cards = cards.shuffled()
+    }
+    
+    private func getCardImages() -> [UIImage] {
+        switch numOfCardPairs {
+        case 5:
+            return [CardImages.bat, CardImages.cat, CardImages.cow, CardImages.dog, CardImages.dragon]
+        case 6:
+            return [CardImages.bat, CardImages.cat, CardImages.cow, CardImages.dog, CardImages.dragon, CardImages.hen]
+        case 8:
+            return [CardImages.bat, CardImages.cat, CardImages.cow, CardImages.dog, CardImages.dragon, CardImages.hen, CardImages.horse, CardImages.man]
+        default:
+            return [CardImages.bat, CardImages.cat, CardImages.cow, CardImages.dog, CardImages.dragon, CardImages.hen, CardImages.horse, CardImages.man, CardImages.pig, CardImages.spider]
+        }
     }
     
     private func configureCollectionView() {
@@ -65,5 +95,15 @@ class GamePlayViewController: UIViewController {
         flowLayout.itemSize = CGSize(width: cellWidth, height: 2 * cellWidth)
         
         return flowLayout
+    }
+}
+
+extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
     }
 }
