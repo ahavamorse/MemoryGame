@@ -15,9 +15,16 @@ class LobbyViewController: UIViewController {
     let buttons = [UIButton(frame: .zero), UIButton(frame: .zero), UIButton(frame: .zero), UIButton(frame: .zero)]
     let sizeStrings = ["2 Cards x 5 Cards", "3 Cards x 4 Cards", "4 Cards x 4 Cards", "4 Cards x 5 Cards"]
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigationBar()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
+        configureNavigationBar()
+        configureBackButton()
         configureTitleLabel()
         configureStackView()
         configureButtons()
@@ -26,7 +33,14 @@ class LobbyViewController: UIViewController {
     
     private func configureViewController() {
         view.backgroundColor = .systemTeal
+    }
+    
+    private func configureNavigationBar() {
         navigationController?.navigationBar.isHidden = true
+    }
+    
+    private func configureBackButton() {
+        navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "backNavButton"), style: .plain, target: self, action: nil)
     }
     
     private func configureTitleLabel() {
