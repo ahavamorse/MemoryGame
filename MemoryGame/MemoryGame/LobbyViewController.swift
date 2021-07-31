@@ -42,7 +42,6 @@ class LobbyViewController: UIViewController {
     }
     
     private func configureBackButton() {
-//        navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "backNavButton"), style: .plain, target: self, action: nil)
         let backButtonImage = UIImage(named: "backNavButton")
         navigationController?.navigationBar.backIndicatorImage = backButtonImage
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = backButtonImage
