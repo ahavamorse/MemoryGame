@@ -28,10 +28,10 @@ class CardCollectionViewCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            imageView.heightAnchor.constraint(equalTo: heightAnchor),
+            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 0.7)
         ])
     }
     
@@ -45,7 +45,6 @@ class CardCollectionViewCell: UICollectionViewCell {
         UIView.transition(from: cardBackImageView, to: cardFrontImageView, duration: 0.25, options: [.transitionFlipFromBottom]) { _ in
             completion()
         }
-        
     }
     
     func flipToBack() {

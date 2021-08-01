@@ -78,13 +78,39 @@ class GamePlayViewController: UIViewController {
     }
     
     private func createCollectionViewFlowLayout(columns: CGFloat) -> UICollectionViewFlowLayout {
+        if columns == 2 {
+            // Limited by vertical space
+            let itemSpacing: CGFloat = 10
+            
+            let verticalInset: CGFloat = 15
+            let totalVerticalSpacing = (verticalInset * 2) + (itemSpacing * 4)
+            let totalCellsHeight = 700 - totalVerticalSpacing
+            let cellHeight = totalCellsHeight / 5
+            
+            let horizontalInset: CGFloat = 50
+            let totalHorizontalSpacing = (horizontalInset * 2) + itemSpacing
+            let totalCellsWidth = view.bounds.width - totalHorizontalSpacing
+            let cellWidth = totalCellsWidth / 2
+            
+            let flowLayout = UICollectionViewFlowLayout()
+            flowLayout.sectionInset = UIEdgeInsets(top: verticalInset, left: horizontalInset, bottom: verticalInset, right: horizontalInset)
+            flowLayout.itemSize = CGSize(width: cellWidth, height: cellHeight)
+            
+            return flowLayout
+        }
+        // Limited by horizontal space
         let edgeInset: CGFloat = 15
         let itemSpacing: CGFloat = 10
         let totalSpacing: CGFloat = (edgeInset * 2) + (itemSpacing * (columns - 1))
 
         let totalCellsWidth = view.bounds.width - totalSpacing
         let cellWidth = totalCellsWidth / columns
-        let cellHeight = cellWidth * 1.435374
+        var cellHeight: CGFloat!
+        if columns == 3 {
+            cellHeight = 165
+        } else {
+            cellHeight = 127
+        }
 
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.sectionInset = UIEdgeInsets(top: edgeInset, left: edgeInset, bottom: edgeInset, right: edgeInset)
@@ -123,6 +149,8 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
                             firstCell.flipToBack()
                             selectedCell.flipToBack()
                         }
+                    } else {
+                        // to do: count matched cards and tries to alert user of wins and losses
                     }
                     // All unmatched cards have been flipped back
                     self.flippedCell = nil
