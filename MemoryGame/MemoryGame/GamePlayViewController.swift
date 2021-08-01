@@ -20,20 +20,24 @@ class GamePlayViewController: UIViewController {
         let totalNumOfCards = gridWidth * gridHeight
         return totalNumOfCards / 2
     }
+    var matchedPairs: Int = 0
+    var matchAttmpts: Int = 0
     
     var collectionView: UICollectionView!
+    let attemptLabel = UIBarButtonItem(title: "Attempts: 0", style: .plain, target: nil, action: nil)
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationBar()
         createCards()
         configureCollectionView()
+        updateAttemptLabel()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
-        configureNavigationBar()
+        configureAttemptLabel()
     }
     
     private func configureViewController() {
@@ -46,10 +50,19 @@ class GamePlayViewController: UIViewController {
         title = gridSizeString
     }
     
+    private func configureAttemptLabel() {
+        navigationItem.rightBarButtonItem = attemptLabel
+        attemptLabel.isEnabled = false
+        attemptLabel.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.label], for: .disabled)
+    }
+    
     private func createCards() {
         let images: [UIImage] = getCardImages()
         let imagePairs = images + images
         cardImages = imagePairs.shuffled()
+        
+        matchedPairs = 0
+        matchAttmpts = 0
     }
     
     private func getCardImages() -> [UIImage] {
@@ -118,6 +131,18 @@ class GamePlayViewController: UIViewController {
         
         return flowLayout
     }
+    
+    private func updateAttemptLabel() {
+        attemptLabel.title = "Attempts: \(matchAttmpts)"
+    }
+    
+    private func checkForWin() {
+        if matchedPairs == numOfCardPairs {
+            let alert = UIAlertController(title: "You've Done It!", message: "Congratulations! You matched all the cards and won the game! It took you \(matchAttmpts) attempts.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Hooray!", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
+    }
 }
 
 extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -150,13 +175,17 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
                             selectedCell.flipToBack()
                         }
                     } else {
-                        // to do: count matched cards and tries to alert user of wins and losses
+                        // Cards match
+                        self.matchedPairs += 1
+                        self.checkForWin()
                     }
                     // All unmatched cards have been flipped back
                     self.flippedCell = nil
                 } else {
                     // This is the first flipped card
                     self.flippedCell = selectedCell
+                    self.matchAttmpts += 1
+                    self.updateAttemptLabel()
                 }
             }
         }
