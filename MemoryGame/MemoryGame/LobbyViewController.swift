@@ -14,8 +14,6 @@ class LobbyViewController: UIViewController {
     let stackView = UIStackView()
     let buttons = [UIButton(frame: .zero), UIButton(frame: .zero), UIButton(frame: .zero), UIButton(frame: .zero)]
     let sizeStrings = ["2 Cards x 5 Cards", "3 Cards x 4 Cards", "4 Cards x 4 Cards", "4 Cards x 5 Cards"]
-    
-    let gamePlayViewController = GamePlayViewController()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -34,7 +32,7 @@ class LobbyViewController: UIViewController {
     }
     
     private func configureViewController() {
-        view.backgroundColor = .systemTeal
+        view.backgroundColor = UIColor(displayP3Red: 187/256, green: 225/256, blue: 247/256, alpha: 1)
     }
     
     private func configureNavigationBar() {
@@ -50,7 +48,7 @@ class LobbyViewController: UIViewController {
     private func configureTitleLabel() {
         titleLabel.text = "Memory Game"
         titleLabel.font = .preferredFont(forTextStyle: .largeTitle)
-        titleLabel.textColor = .systemBackground
+        titleLabel.textColor = .label
     }
     
     private func configureStackView() {
@@ -67,9 +65,10 @@ class LobbyViewController: UIViewController {
     private func configureButtons() {
         for index in 0...3 {
             let button = buttons[index]
-            button.backgroundColor = .tertiaryLabel
+            button.backgroundColor = UIColor(displayP3Red: 50/256, green: 144/256, blue: 196/256, alpha: 1)
             button.layer.cornerRadius = 15
             button.titleLabel?.font = .preferredFont(forTextStyle: .largeTitle)
+            button.setTitleColor(.systemBackground, for: .normal)
             
             button.tag = index
             button.setTitle(sizeStrings[index], for: .normal)
@@ -101,6 +100,8 @@ class LobbyViewController: UIViewController {
     }
     
     @objc private func startGame(sender: UIButton) {
+        let gamePlayViewController = GamePlayViewController()
+        
         switch sender.tag {
         case 0:
             // Grid Size is 2x5

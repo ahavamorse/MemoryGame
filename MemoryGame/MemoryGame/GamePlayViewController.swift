@@ -83,7 +83,7 @@ class GamePlayViewController: UIViewController {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: flowLayout)
         
         view.addSubview(collectionView)
-        collectionView.backgroundColor = .systemBackground
+        collectionView.backgroundColor = UIColor(displayP3Red: 187/256, green: 225/256, blue: 247/256, alpha: 0.5)
         collectionView.delegate = self
         collectionView.dataSource = self
         
