@@ -22,3 +22,16 @@ enum CardImages {
     static let pig = UIImage(named: "memoryPigCardFront")!
     static let spider = UIImage(named: "memorySpiderCardFront")!
 }
+
+enum Colors {
+    static let gamePlayBackground = UIColor(named: "gamePlayBackgroundColor")
+    static let lobbyBackground = UIColor(named: "lobbyBackgroundColor")
+    static let lobbyButtonsBackground = UIColor(named: "lobbyButtonsBackgroundColor")
+}
+
+enum GridSizeStrings {
+    static let twoByFive = "2 Cards x 5 Cards"
+    static let threeByFour = "3 Cards x 4 Cards"
+    static let fourByFour = "4 Cards x 4 Cards"
+    static let fourByFive = "4 Cards x 5 Cards"
+}
