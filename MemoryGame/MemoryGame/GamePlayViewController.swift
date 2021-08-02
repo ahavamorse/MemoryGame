@@ -10,34 +10,20 @@ import UIKit
 
 class GamePlayViewController: UIViewController {
     
-    var gridWidth: Int = 0
-    var gridHeight: Int = 0
     var gridSizeString: String = ""
-    
-    var cardImages: [UIImage] = []
     var flippedCell: CardCollectionViewCell?
-    var numOfCardPairs: Int {
-        let totalNumOfCards = gridWidth * gridHeight
-        return totalNumOfCards / 2
-    }
-    var matchedPairs: Int = 0
-    var matchAttmpts: Int = 0
     
+    var gamePlayController: GamePlayController!
     var collectionView: UICollectionView!
     let attemptLabel = UIBarButtonItem(title: "Attempts: 0", style: .plain, target: nil, action: nil)
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        configureNavigationBar()
-        createCards()
-        configureCollectionView()
-        updateAttemptLabel()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
         configureAttemptLabel()
+        configureNavigationBar()
+        gamePlayController.createCards()
+        configureCollectionView()
     }
     
     private func configureViewController() {
@@ -56,34 +42,12 @@ class GamePlayViewController: UIViewController {
         attemptLabel.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.label], for: .disabled)
     }
     
-    private func createCards() {
-        let images: [UIImage] = getCardImages()
-        let imagePairs = images + images
-        cardImages = imagePairs.shuffled()
-        
-        matchedPairs = 0
-        matchAttmpts = 0
-    }
-    
-    private func getCardImages() -> [UIImage] {
-        switch numOfCardPairs {
-        case 5:
-            return [CardImages.bat, CardImages.cat, CardImages.cow, CardImages.dog, CardImages.dragon]
-        case 6:
-            return [CardImages.bat, CardImages.cat, CardImages.cow, CardImages.dog, CardImages.dragon, CardImages.hen]
-        case 8:
-            return [CardImages.bat, CardImages.cat, CardImages.cow, CardImages.dog, CardImages.dragon, CardImages.hen, CardImages.horse, CardImages.man]
-        default:
-            return [CardImages.bat, CardImages.cat, CardImages.cow, CardImages.dog, CardImages.dragon, CardImages.hen, CardImages.horse, CardImages.man, CardImages.pig, CardImages.spider]
-        }
-    }
-    
     private func configureCollectionView() {
-        let flowLayout = createCollectionViewFlowLayout(columns: CGFloat(gridWidth))
+        let flowLayout = createCollectionViewFlowLayout(columns: CGFloat(gamePlayController.gridWidth))
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: flowLayout)
         
         view.addSubview(collectionView)
-        collectionView.backgroundColor = UIColor(displayP3Red: 187/256, green: 225/256, blue: 247/256, alpha: 0.5)
+        collectionView.backgroundColor = Colors.gamePlayBackground
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -133,26 +97,18 @@ class GamePlayViewController: UIViewController {
     }
     
     private func updateAttemptLabel() {
-        attemptLabel.title = "Attempts: \(matchAttmpts)"
-    }
-    
-    private func checkForWin() {
-        if matchedPairs == numOfCardPairs {
-            let alert = UIAlertController(title: "You've Done It!", message: "Congratulations! You matched all the cards and won the game! It took you \(matchAttmpts) attempts.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Hooray!", style: .default, handler: nil))
-            self.present(alert, animated: true)
-        }
+        attemptLabel.title = "Attempts: \(gamePlayController.matchAttmpts)"
     }
 }
 
 extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cardImages.count
+        return gamePlayController.cardImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CardCollectionViewCell.reuseID, for: indexPath) as! CardCollectionViewCell
-        cell.set(frontImage: cardImages[indexPath.row])
+        cell.set(frontImage: gamePlayController.cardImages[indexPath.row])
         return cell
     }
     
@@ -176,15 +132,19 @@ extension GamePlayViewController: UICollectionViewDelegate, UICollectionViewData
                         }
                     } else {
                         // Cards match
-                        self.matchedPairs += 1
-                        self.checkForWin()
+                        self.gamePlayController.matchedPairs += 1
+                        self.gamePlayController.checkForWin() { alert in
+                            if let alert = alert {
+                                self.present(alert, animated: true)
+                            }
+                        }
                     }
                     // All unmatched cards have been flipped back
                     self.flippedCell = nil
                 } else {
                     // This is the first flipped card
                     self.flippedCell = selectedCell
-                    self.matchAttmpts += 1
+                    self.gamePlayController.matchAttmpts += 1
                     self.updateAttemptLabel()
                 }
             }

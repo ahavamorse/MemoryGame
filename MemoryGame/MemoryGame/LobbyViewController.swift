@@ -12,8 +12,8 @@ class LobbyViewController: UIViewController {
     
     let titleLabel = UILabel()
     let stackView = UIStackView()
-    let buttons = [UIButton(frame: .zero), UIButton(frame: .zero), UIButton(frame: .zero), UIButton(frame: .zero)]
-    let sizeStrings = ["2 Cards x 5 Cards", "3 Cards x 4 Cards", "4 Cards x 4 Cards", "4 Cards x 5 Cards"]
+    var buttons: [UIButton] = []
+    let buttonTitles: [String] = [GridSizeStrings.twoByFive, GridSizeStrings.threeByFour, GridSizeStrings.fourByFour, GridSizeStrings.fourByFive]
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -32,7 +32,7 @@ class LobbyViewController: UIViewController {
     }
     
     private func configureViewController() {
-        view.backgroundColor = UIColor(displayP3Red: 187/256, green: 225/256, blue: 247/256, alpha: 1)
+        view.backgroundColor = Colors.lobbyBackground
     }
     
     private func configureNavigationBar() {
@@ -63,15 +63,17 @@ class LobbyViewController: UIViewController {
     }
     
     private func configureButtons() {
-        for index in 0...3 {
-            let button = buttons[index]
-            button.backgroundColor = UIColor(displayP3Red: 50/256, green: 144/256, blue: 196/256, alpha: 1)
+        for index in 0...buttonTitles.count {
+            let button = UIButton(frame: .zero)
+            buttons.append(button)
+            
+            button.backgroundColor = Colors.lobbyButtonsBackground
             button.layer.cornerRadius = 15
             button.titleLabel?.font = .preferredFont(forTextStyle: .largeTitle)
             button.setTitleColor(.systemBackground, for: .normal)
             
             button.tag = index
-            button.setTitle(sizeStrings[index], for: .normal)
+            button.setTitle(buttonTitles[index], for: .normal)
             button.addTarget(self, action: #selector(startGame), for: .touchUpInside)
         }
     }
@@ -101,26 +103,11 @@ class LobbyViewController: UIViewController {
     
     @objc private func startGame(sender: UIButton) {
         let gamePlayViewController = GamePlayViewController()
+        let gamePlayController = GamePlayController()
+        gamePlayController.setGridSize(buttonIndex: sender.tag)
         
-        switch sender.tag {
-        case 0:
-            // Grid Size is 2x5
-            gamePlayViewController.gridWidth = 2
-            gamePlayViewController.gridHeight = 5
-        case 1:
-            // Grid Size is 3x4
-            gamePlayViewController.gridWidth = 3
-            gamePlayViewController.gridHeight = 4
-        case 2:
-            // Grid Size is 4x4
-            gamePlayViewController.gridWidth = 4
-            gamePlayViewController.gridHeight = 4
-        default:
-            // Grid Size is 4x5
-            gamePlayViewController.gridWidth = 4
-            gamePlayViewController.gridHeight = 5
-        }
-        gamePlayViewController.gridSizeString = sizeStrings[sender.tag]
+        gamePlayViewController.gamePlayController = gamePlayController
+        gamePlayViewController.gridSizeString = buttonTitles[sender.tag]
         navigationController?.pushViewController(gamePlayViewController, animated: true)
     }
 }
