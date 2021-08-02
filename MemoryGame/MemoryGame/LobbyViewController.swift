@@ -26,8 +26,8 @@ class LobbyViewController: UIViewController {
         configureNavigationBar()
         configureBackButton()
         configureTitleLabel()
-        configureStackView()
         configureButtons()
+        configureStackView()
         configureUI()
     }
     
@@ -63,7 +63,7 @@ class LobbyViewController: UIViewController {
     }
     
     private func configureButtons() {
-        for index in 0...buttonTitles.count {
+        for index in 0...buttonTitles.count - 1 {
             let button = UIButton(frame: .zero)
             buttons.append(button)
             
