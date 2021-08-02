@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homerAppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="AYk-2d-Uw1">
-                                <rect key="frame" x="90" y="404" width="98" height="98"/>
+                                <rect key="frame" x="87" y="404" width="98" height="98"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="AYk-2d-Uw1" secondAttribute="height" multiplier="1:1" id="aVT-XQ-fsV"/>
                                 </constraints>
@@ -33,7 +33,7 @@
                             <constraint firstItem="AYk-2d-Uw1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="360" id="8zu-22-nTC"/>
                             <constraint firstItem="3zv-mV-UgX" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="RYC-yu-BXW"/>
                             <constraint firstItem="3zv-mV-UgX" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="USW-Tg-8du"/>
-                            <constraint firstItem="AYk-2d-Uw1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="90" id="UxV-ff-41L"/>
+                            <constraint firstItem="AYk-2d-Uw1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="UxV-ff-41L"/>
                             <constraint firstItem="AYk-2d-Uw1" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="otS-gS-rcm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

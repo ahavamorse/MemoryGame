@@ -43,22 +43,24 @@ class GamePlayController {
     }
     
     func createCards() {
-        let images: [UIImage] = getCardImages()
+        let images: [UIImage] = getRandomCardImages()
         let imagePairs = images + images
         cardImages = imagePairs.shuffled()
     }
     
-    func getCardImages() -> [UIImage] {
-        // to do: generate a number of random cards
-        switch numOfCardPairs {
-        case 5:
-            return [CardImages.bat, CardImages.cat, CardImages.cow, CardImages.dog, CardImages.dragon]
-        case 6:
-            return [CardImages.bat, CardImages.cat, CardImages.cow, CardImages.dog, CardImages.dragon, CardImages.hen]
-        case 8:
-            return [CardImages.bat, CardImages.cat, CardImages.cow, CardImages.dog, CardImages.dragon, CardImages.hen, CardImages.horse, CardImages.man]
-        default:
-            return [CardImages.bat, CardImages.cat, CardImages.cow, CardImages.dog, CardImages.dragon, CardImages.hen, CardImages.horse, CardImages.man, CardImages.pig, CardImages.spider]
+    func getRandomCardImages() -> [UIImage] {
+        var allImages = [CardImages.bat, CardImages.cat, CardImages.cow, CardImages.dog, CardImages.dragon, CardImages.hen, CardImages.horse, CardImages.man, CardImages.pig, CardImages.spider]
+        
+        var randomImages: [UIImage] = []
+        
+        if numOfCardPairs == 10 {
+            return allImages
+        } else {
+            allImages.shuffle()
+            for _ in 1...numOfCardPairs {
+                randomImages.append(allImages.popLast()!)
+            }
+            return randomImages
         }
     }
     
