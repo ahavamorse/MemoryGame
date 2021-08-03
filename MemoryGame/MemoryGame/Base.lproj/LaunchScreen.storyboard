@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homerAppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="AYk-2d-Uw1">
+                                <rect key="frame" x="87" y="404" width="98" height="98"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="AYk-2d-Uw1" secondAttribute="height" multiplier="1:1" id="aVT-XQ-fsV"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H    MER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zv-mV-UgX">
+                                <rect key="frame" x="14.333333333333343" y="387.33333333333331" width="385.33333333333326" height="131.33333333333331"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="110"/>
+                                <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="highlightedColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.69573402399999995" green="0.88694304229999998" blue="0.98401051760000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="AYk-2d-Uw1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="360" id="8zu-22-nTC"/>
+                            <constraint firstItem="3zv-mV-UgX" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="RYC-yu-BXW"/>
+                            <constraint firstItem="3zv-mV-UgX" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="USW-Tg-8du"/>
+                            <constraint firstItem="AYk-2d-Uw1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="UxV-ff-41L"/>
+                            <constraint firstItem="AYk-2d-Uw1" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="otS-gS-rcm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="homerAppLogo" width="256" height="256"/>
+    </resources>
+</document>
