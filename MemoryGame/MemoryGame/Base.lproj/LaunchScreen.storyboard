@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,28 +17,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homerAppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="AYk-2d-Uw1">
-                                <rect key="frame" x="87" y="404" width="98" height="98"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="AYk-2d-Uw1" secondAttribute="height" multiplier="1:1" id="aVT-XQ-fsV"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H    MER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zv-mV-UgX">
-                                <rect key="frame" x="14.333333333333343" y="387.33333333333331" width="385.33333333333326" height="131.33333333333331"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="110"/>
-                                <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <color key="highlightedColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="NSY-Kg-CO7">
+                                <rect key="frame" x="25" y="358.33333333333331" width="364" height="179.33333333333331"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Memory" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zv-mV-UgX">
+                                        <rect key="frame" x="51.666666666666686" y="0.0" width="261" height="89.666666666666671"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="75"/>
+                                        <color key="textColor" systemColor="systemBackgroundColor"/>
+                                        <color key="highlightedColor" systemColor="systemBackgroundColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Match" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p23-Ih-xJI">
+                                        <rect key="frame" x="82.666666666666686" y="89.666666666666686" width="199" height="89.666666666666686"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="75"/>
+                                        <color key="textColor" systemColor="systemBackgroundColor"/>
+                                        <color key="highlightedColor" systemColor="systemBackgroundColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.69573402399999995" green="0.88694304229999998" blue="0.98401051760000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="AYk-2d-Uw1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="360" id="8zu-22-nTC"/>
-                            <constraint firstItem="3zv-mV-UgX" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="RYC-yu-BXW"/>
-                            <constraint firstItem="3zv-mV-UgX" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="USW-Tg-8du"/>
-                            <constraint firstItem="AYk-2d-Uw1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="UxV-ff-41L"/>
-                            <constraint firstItem="AYk-2d-Uw1" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="otS-gS-rcm"/>
+                            <constraint firstItem="NSY-Kg-CO7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="8bv-au-tTS"/>
+                            <constraint firstItem="NSY-Kg-CO7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="BtP-3S-HbO"/>
+                            <constraint firstItem="NSY-Kg-CO7" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="g29-wD-bkp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NSY-Kg-CO7" secondAttribute="trailing" constant="25" id="uDY-hE-u7d"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -45,6 +51,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="homerAppLogo" width="256" height="256"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

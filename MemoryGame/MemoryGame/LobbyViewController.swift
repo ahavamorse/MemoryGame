@@ -46,7 +46,7 @@ class LobbyViewController: UIViewController {
     }
     
     private func configureTitleLabel() {
-        titleLabel.text = "Memory Game"
+        titleLabel.text = "Memory Match"
         titleLabel.font = .preferredFont(forTextStyle: .largeTitle)
         titleLabel.textColor = .label
     }
